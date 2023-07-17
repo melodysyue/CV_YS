@@ -53,7 +53,7 @@ Aside
 
 ```{r}
 # grabbed this bit from Ted Laderas ---
-cat("[<i class='fas fa-download'></i> Download a PDF of this CV](https://github.com/shannonpileggi/shannon_pileggi_cv/blob/main/shannon_pileggi_cv.pdf)")
+cat("[<i class='fas fa-download'></i> Download a PDF of this CV](https://github.com/melodysyue/CV_YS/blob/main/cv.pdf)")
 ```
 
 Contact {#contact}
@@ -79,7 +79,7 @@ Disclaimer {#disclaimer}
 
 Made with the R package [**pagedown**](https://github.com/rstudio/pagedown). 
 
-The source code is available [on github.com/nstrayer/cv](https://github.com/nstrayer/cv).
+The source code is available [on github.com/melodysyue/CV_YS](https://github.com/melodysyue/CV_YS).
 
 Last updated on `r Sys.Date()`.
 
