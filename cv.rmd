@@ -129,7 +129,7 @@ Academic Services {data-icon=pencil-alt}
 CV %<>% print_section('academic_services')
 ```
 
-Conference Presentations {data-icon=users}
+Conference Participation {data-icon=users}
 --------------------------------------------------------------------------------
 ```{r}
 CV %<>% print_section('presentations')
