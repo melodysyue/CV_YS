@@ -65,7 +65,7 @@ CV %>% print_contact_info()
 
 
 
-Language Skills {#skills}
+Skills {#skills}
 --------------------------------------------------------------------------------
 
 ```{r}
@@ -117,7 +117,9 @@ CV %<>% print_section('research_positions')
 
 Selected Publications {data-icon=book}
 --------------------------------------------------------------------------------
-
+::: aside
+For a comprehensive list of publications, please visit [my ORCID profile](https://orcid.org/0000-0002-2860-2666)
+:::
 ```{r}
 CV %<>% print_section('academic_articles')
 ```
