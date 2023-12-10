@@ -1,0 +1,33 @@
+name: Update CV
+
+on: 
+  workflow_dispatch:
+  repository_dispatch:
+    types: [google-sheet-update]
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up R environment
+      uses: r-lib/actions/setup-r@v1
+
+    - name: Install R dependencies
+      run: |
+        install.packages("rmarkdown", "pagedown", "magrittr")
+
+    - name: Render CV .Rmd to PDF
+      run: |
+        rmarkdown::render('cv.rmd')
+
+    - name: Commit and Push updates
+      run: |
+        git config --global user.name 'melodysyue'
+        git config --global user.email 'melodysyue@gmail.com'
+        git add cv.pdf cv.html
+        git commit -m "Update CV"
+        git push
