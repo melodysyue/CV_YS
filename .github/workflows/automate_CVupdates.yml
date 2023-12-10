@@ -21,7 +21,7 @@ jobs:
           
       - name: Render rmd files and Commit Results
         run: |
-          rmarkdown::render('cv.rmd')
+          Rscript -e "rmarkdown::render('cv.rmd')"
           git config --local user.name "$GITHUB_ACTOR"
           git config --local user.email "melodysyue@gmail.com"
           git add cv.pdf cv.html
