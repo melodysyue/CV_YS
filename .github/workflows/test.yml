@@ -20,7 +20,6 @@ jobs:
            run: |
             Rscript -e 'install.packages(c("rmarkdown", "pagedown", "magrittr", "googlesheets4", "tidyverse"))'
          - uses: browser-actions/setup-chrome@v1
-         - run: chrome --version
          - name: render rmd to get html
            run: |
             Rscript -e 'rmarkdown::render("cv.rmd")'
