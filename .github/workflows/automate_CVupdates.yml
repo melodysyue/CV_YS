@@ -1,39 +1,39 @@
-name: Update CV
+# Name of the workflow
+name: Automate CV Update
 
-on: 
-  workflow_dispatch:
-  repository_dispatch:
-    types: [google-sheet-update]
-
+# Event - What starts this workflow?
+on:
+    workflow_dispatch:
+    repository_dispatch:
+      types: [google-sheet-update]
+    schedule:
+      - cron: '0 8 1 * *'  
+    
+# Jobs - What the computer should do? 
 jobs:
-  render-rmarkdown:
-    runs-on: ubuntu-latest
+    render-rmd:
+        runs-on: macOS-latest
 
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
-
-      - name: set up pandoc
-        uses: r-lib/actions/setup-pandoc@v2
-      
-      - name: Set up R environment
-        uses: r-lib/actions/setup-r@v2
-      
-      - name: Install R dependencies
-        run: |
-          Rscript -e "install.packages(c('rmarkdown', 'pagedown', 'magrittr', 'googlesheets4'))"
-      
-      - name: Render CV from RMarkdown
-        run: |
-          Rscript -e "rmarkdown::render('cv.rmd')"
-      
-      - name: Configure Git
-        run: |
-          git config --local user.name "$GITHUB_ACTOR"
-          git config --local user.email "melodysyue@gmail.com"
-      
-      - name: Commit and Push updates
-        run: |
-          git add cv.pdf cv.html
-          git commit -m "Update CV" || echo "No changes to commit"
-          git push
+        steps:
+         - uses: actions/checkout@v3
+         - uses: r-lib/actions/setup-pandoc@v2
+         - uses: r-lib/actions/setup-r@v2
+         - name: install packages
+           run: |
+            Rscript -e 'install.packages(c("rmarkdown", "pagedown", "magrittr", "googlesheets4", "tidyverse"))'
+         - uses: browser-actions/setup-chrome@v1
+         - name: render rmd to get html
+           run: |
+            Rscript -e 'rmarkdown::render("cv.rmd")'
+         - name: convert html to pdf
+           run: |
+            Rscript -e 'pagedown::chrome_print("cv.html")'
+         - name: config github
+           run: |
+            git config --local user.name "$GITHUB_ACTOR"
+            git config --local user.email "$GITHUB_ACTOR@users.noreply.github.com"
+         - name: commit and push updates
+           run: |
+            git add .
+            git commit -m "Update CV" || echo "No changes to commit"
+            git push origin || echo "No changes to commit"

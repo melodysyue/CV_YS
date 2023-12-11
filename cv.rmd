@@ -9,9 +9,8 @@ output:
   pagedown::html_resume:
     css: ['dd_cv.css', 'resume']
     self_contained: true
-  pdf_document: default
   # uncomment this line to produce HTML and PDF in RStudio:
-#knit: pagedown::chrome_print
+knit: pagedown::chrome_print
 ---
 
 ```{r, include=FALSE}
