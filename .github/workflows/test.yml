@@ -19,7 +19,7 @@ jobs:
             Rscript -e 'install.packages(c("rmarkdown", "magrittr", "googlesheets4"))'
          - name: render rmd
            run: |
-            Rscript -e "rmarkdown::render("cv.rmd")'
+            Rscript -e 'rmarkdown::render("cv.rmd")'
          - name: print-message
            run: |
             Rscript -e 'print("Hello R World! This works")' 
