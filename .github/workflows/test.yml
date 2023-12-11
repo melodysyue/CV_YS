@@ -19,16 +19,14 @@ jobs:
          - name: install packages
            run: |
             Rscript -e 'install.packages(c("rmarkdown", "pagedown", "magrittr", "googlesheets4", "tidyverse"))'
-         - name: install Google Chrome
-           run: |
-            sudo apt-get update
-            sudo apt-get install -y google-chrome-stable
+         - uses: browser-actions/setup-chrome@v1
+         - run: chrome --version
          - name: render rmd to get html
            run: |
             Rscript -e 'rmarkdown::render("cv.rmd")'
-         - name: knit rmd to get pdf
+         - name: convert html to pdf
            run: |
-            Rscript -e 'rmarkdown::knit("cv.rmd")'
+            Rscript -e 'pagedown::chrome_print("cv.html")'
          - name: config github
            run: |
             git config --local user.name "$GITHUB_ACTOR"
