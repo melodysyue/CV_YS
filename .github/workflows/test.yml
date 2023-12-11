@@ -21,7 +21,7 @@ jobs:
             Rscript -e 'install.packages(c("rmarkdown", "pagedown", "magrittr", "googlesheets4", "tidyverse"))'
          - name: render rmd
            run: |
-            Rscript -e 'rmarkdown::render("cv.rmd")'
+            Rscript -e 'rmarkdown::render("cv.rmd", output_format = "all")'
          - name: config github
            run: |
             git config --local user.name "$GITHUB_ACTOR"
