@@ -21,7 +21,7 @@ jobs:
          - name: install packages
            uses: r-lib/actions/setup-r-dependencies@v2
            with:
-            packges: |
+            packages: |
               any::rmarkdown
               any::pagedown
               any::magrittr
