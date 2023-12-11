@@ -20,6 +20,15 @@ jobs:
          - name: render rmd
            run: |
             Rscript -e 'rmarkdown::render("cv.rmd")'
+         - name: config github
+           run: |
+            git config --local user.name "$GITHUB_ACTOR"
+            git config --local user.email "$GITHUB_ACTOR@users.noreply.github.com"
+         - name: Commit and Push updates
+           run: |
+            git add cv.pdf cv.html
+            git commit -m "Update CV"
+            git push
          - name: print-message
            run: |
-            Rscript -e 'print("Hello R World! This works")' 
+            Rscript -e 'print("It runs succesfully!")' 
